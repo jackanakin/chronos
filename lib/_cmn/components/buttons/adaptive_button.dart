@@ -56,16 +56,18 @@ class AdaptiveFilledButtonBuilder {
   final AdaptiveButton widget;
 
   CupertinoButton get buildIos {
-    return CupertinoButton.filled(
+    return CupertinoButton(
       onPressed: widget.onPressed,
+      color: CupertinoColors.activeBlue,
       child: widget.child,
     );
   }
 
   Widget get buildAndroid {
     return FloatingActionButton.extended(
-        foregroundColor: context.cmnWithContext.colors.background,
-        backgroundColor: context.cmnWithContext.colors.primary,
+        shape: const RoundedRectangleBorder(),
+        foregroundColor: context.cmn.colors.background,
+        backgroundColor: context.cmn.colors.primary,
         onPressed: widget.onPressed,
         label: widget.child);
   }

@@ -68,6 +68,12 @@ flutter:
     # dark theme
     - assets/dark/images/logo.png
 
+    # neutral
+    - assets/neutral/images/home.png
+    - assets/neutral/images/haircut.png
+    - assets/neutral/images/beard.png
+    - assets/neutral/images/hair_beard.png
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 

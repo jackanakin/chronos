@@ -17,7 +17,13 @@ class AdaptiveImage extends StatelessWidget {
     required String path,
     required double width,
     required double height,
-  }) : this(key: key, path: path, width: width, height: height, neutral: false);
+  }) : this(
+          key: key,
+          path: path,
+          width: width,
+          height: height,
+          neutral: false,
+        );
 
   final bool neutral;
   final String path;
@@ -29,15 +35,9 @@ class AdaptiveImage extends StatelessWidget {
     final String themePath =
         neutral ? 'neutral' : PlatformUtilities().getThemeMode.name;
 
-    final String fullPath = 'assets/$themePath/images/logo.png';
+    final String fullPath = 'assets/$themePath/$path';
 
     return Container(
-      margin: const EdgeInsets.only(
-        top: 50,
-        bottom: 20,
-        left: 20,
-        right: 20,
-      ),
       alignment: Alignment.center,
       width: width,
       height: height,

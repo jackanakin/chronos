@@ -53,18 +53,17 @@ class AdaptiveTextFormFieldBuilder {
     );
 
     return InputDecoration(
-      labelText: widget.labelText,
-      hintText: widget.hintText,
-      prefixIcon: widget.prefixIcon,
-      // ios
-      border: border,
-      enabledBorder: border,
-      focusedBorder: border,
-      filled: true,
-      fillColor: colors.background,
-      hoverColor: colors.background,
-      contentPadding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-    );
+        labelText: widget.labelText,
+        hintText: widget.hintText,
+        prefixIcon: widget.prefixIcon,
+        // ios
+        border: border,
+        enabledBorder: border,
+        focusedBorder: border,
+        filled: true,
+        fillColor: colors.background,
+        contentPadding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+        labelStyle: TextStyle(color: context.cmn.colors.onBackground));
   }
 
   TextFormField build() {
@@ -76,7 +75,6 @@ class AdaptiveTextFormFieldBuilder {
       enableSuggestions: false,
       keyboardType: widget.keyboardType,
       inputFormatters: widget.inputFormatters,
-      style: Theme.of(context).textTheme.bodyLarge,
     );
   }
 }

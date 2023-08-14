@@ -12,7 +12,6 @@ ThemeData makeAppTheme(ColorScheme colorScheme) {
   final textTheme =
       GoogleFonts.robotoTextTheme().apply(bodyColor: colorScheme.onBackground);
 
-
   return ThemeData(
       useMaterial3: true,
       inputDecorationTheme: inputDecorationTheme,

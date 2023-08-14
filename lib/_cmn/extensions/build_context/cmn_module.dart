@@ -1,3 +1,4 @@
+import 'package:chronos/_cmn/utilities/text_utilities.dart';
 import 'package:flutter/material.dart';
 
 import '../../utilities/color_utilities.dart';
@@ -11,21 +12,16 @@ class CommonModule {
   static late BuildContext instanceContext;
 
   // Factory constructor to provide access to the single instance.
-  factory CommonModule() {
-    return _instance;
-  }
-
-  // Factory constructor to provide access to the single instance.
-  factory CommonModule.withContext(BuildContext context) {
+  factory CommonModule(BuildContext context) {
     instanceContext = context;
 
     return _instance;
   }
 
   ColorUtilities get colors => ColorUtilities(instanceContext);
+  TextUtilities get texts => TextUtilities(instanceContext);
 }
 
 extension BuildContextEntension<T> on BuildContext {
-  CommonModule get cmn => CommonModule();
-  CommonModule get cmnWithContext => CommonModule.withContext(this);
+  CommonModule get cmn => CommonModule(this);
 }

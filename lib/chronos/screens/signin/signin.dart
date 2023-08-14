@@ -1,6 +1,7 @@
 import 'package:chronos/_cmn/components/buttons/adaptive_button.dart';
 import 'package:chronos/_cmn/components/images/adaptive_image.dart';
 import 'package:chronos/_cmn/components/inputs/adaptive_text_form_field.dart';
+import 'package:chronos/_cmn/components/padding/screen_padding.dart';
 import 'package:chronos/_cmn/formatters/phone_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -23,7 +24,7 @@ class _SignInState extends State<SignInScreen> {
     return Scaffold(
       backgroundColor: colorScheme.background,
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: ScreenComponents().getPadding,
         child: Column(
           children: [
             const SizedBox(
