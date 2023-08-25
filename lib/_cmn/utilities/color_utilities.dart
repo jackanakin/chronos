@@ -36,4 +36,8 @@ class ColorUtilities {
   Color get background => Theme.of(_instanceContext).colorScheme.background;
 
   Color get onBackground => Theme.of(_instanceContext).colorScheme.onBackground;
+
+  Color get tertiary => Theme.of(_instanceContext).colorScheme.tertiary;
+
+  Color get tertiaryContainer => Theme.of(_instanceContext).colorScheme.tertiaryContainer;
 }

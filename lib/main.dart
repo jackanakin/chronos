@@ -1,6 +1,6 @@
 import 'package:chronos/_cmn/themes/default.dart';
 import 'package:chronos/_cmn/utilities/platform_utilities.dart';
-import 'package:chronos/chronos/screens/home/home.dart';
+import 'package:chronos/chronos/screens/professional_selector/professional_selector.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: PlatformUtilities().getThemeMode,
-      home: const HomeScreen(),
+      home: const ProfessionalSelectorScreen(),
     );
   }
 }

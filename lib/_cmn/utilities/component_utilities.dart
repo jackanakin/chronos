@@ -1,16 +1,16 @@
 import 'package:flutter/widgets.dart';
 
-class ScreenComponents {
+class ComponentUtilities {
   // Private constructor prevents direct instantiation from outside the class.
-  ScreenComponents._();
+  ComponentUtilities._();
 
   // Static instance variable to hold the single instance of the class.
-  static final ScreenComponents _instance = ScreenComponents._();
+  static final ComponentUtilities _instance = ComponentUtilities._();
 
   // Factory constructor to provide access to the single instance.
-  factory ScreenComponents() {
+  factory ComponentUtilities() {
     return _instance;
   }
 
-  EdgeInsets get getPadding => const EdgeInsets.all(16);
+  EdgeInsets get getPadding => const EdgeInsets.all(20);
 }

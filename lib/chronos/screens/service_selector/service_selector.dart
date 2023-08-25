@@ -1,45 +1,41 @@
-import 'package:chronos/_cmn/components/images/box_fit_image.dart';
-import 'package:chronos/_cmn/components/padding/screen_padding.dart';
+import 'package:chronos/_cmn/components/cards/basic_card.dart';
 import 'package:chronos/_cmn/extensions/build_context/cmn_module.dart';
+import 'package:chronos/_cmn/utilities/component_utilities.dart';
+import 'package:chronos/chronos/components/app/app_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'components/service_card.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class ServiceSelectorScreen extends StatefulWidget {
+  const ServiceSelectorScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<ServiceSelectorScreen> createState() => _ServiceSelectorScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _ServiceSelectorScreenState extends State<ServiceSelectorScreen> {
   @override
   Widget build(BuildContext context) {
     final colorScheme = context.cmn.colors;
 
     return Scaffold(
-      appBar: AppBar(
-          backgroundColor: const Color(0xFFebe6e7),
-          titleSpacing: 0,
-          toolbarHeight: 140,
-          // toolbarHeight: 50,
-          title: const BoxFitImage(path: 'images/home.png', fit: BoxFit.cover)),
+      appBar: customAppBar,
       backgroundColor: colorScheme.background,
       body: SingleChildScrollView(
-        padding: ScreenComponents().getPadding,
+        padding: ComponentUtilities().getPadding,
         child: Column(
           children: [
-            ServiceCard(
+            BasicCard(
               title: 'Cabelo',
               imagePath: 'images/haircut.png',
               onPressed: () {},
             ),
-            ServiceCard(
+            BasicCard(
               title: 'Barba',
               imagePath: 'images/beard.png',
               onPressed: () {},
             ),
-            ServiceCard(
+            BasicCard(
               title: 'Cabelo + Barba',
               imagePath: 'images/hair_beard.png',
               onPressed: () {},

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 const lightColorScheme = ColorScheme(
   brightness: Brightness.light,
-  primary: Color.fromARGB(255, 0, 108, 83),
+  primary: Color(0xFFEC5938),
   onPrimary: Color(0xFFFFFFFF),
   primaryContainer: Color(0xFF81F8D1),
   onPrimaryContainer: Color(0xFF002117),
@@ -10,9 +10,9 @@ const lightColorScheme = ColorScheme(
   onSecondary: Color(0xFFFFFFFF),
   secondaryContainer: Color(0xFFCEE9DC),
   onSecondaryContainer: Color(0xFF082018),
-  tertiary: Color(0xFF406376),
+  tertiary: Color.fromARGB(255, 65, 64, 64),
   onTertiary: Color(0xFFFFFFFF),
-  tertiaryContainer: Color(0xFFC3E8FE),
+  tertiaryContainer: Color(0xFFEEEEEE),
   onTertiaryContainer: Color(0xFF001E2B),
   error: Color(0xFFBA1A1A),
   errorContainer: Color(0xFFFFDAD6),

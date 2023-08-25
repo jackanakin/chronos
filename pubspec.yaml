@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts: ^5.1.0
   font_awesome_flutter: ^10.5.0
+  uuid: ^3.0.7
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +74,8 @@ flutter:
     - assets/neutral/images/haircut.png
     - assets/neutral/images/beard.png
     - assets/neutral/images/hair_beard.png
+    - assets/neutral/images/landing.png
+    - assets/neutral/images/scissors.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -85,6 +88,13 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  fonts:
+    - family: Roboto-Medium
+      fonts: 
+        - asset: assets/fonts/Roboto-Medium.ttf
+    - family: ArchivoBlack
+      fonts:
+        - asset: assets/fonts/ArchivoBlack-Regular.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:
