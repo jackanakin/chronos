@@ -1,10 +1,7 @@
-import 'package:chronos/_cmn/components/cards/basic_card.dart';
 import 'package:chronos/_cmn/extensions/build_context/cmn_module.dart';
-import 'package:chronos/_cmn/utilities/component_utilities.dart';
+import 'package:chronos/chronos/utilities/component_utilities.dart';
 import 'package:chronos/chronos/components/app/app_bar.dart';
 import 'package:flutter/material.dart';
-
-import 'components/service_card.dart';
 
 class ServiceSelectorScreen extends StatefulWidget {
   const ServiceSelectorScreen({super.key});
@@ -22,24 +19,9 @@ class _ServiceSelectorScreenState extends State<ServiceSelectorScreen> {
       appBar: customAppBar,
       backgroundColor: colorScheme.background,
       body: SingleChildScrollView(
-        padding: ComponentUtilities().getPadding,
+        padding: ComponentUtilities().getScreenPadding,
         child: Column(
           children: [
-            BasicCard(
-              title: 'Cabelo',
-              imagePath: 'images/haircut.png',
-              onPressed: () {},
-            ),
-            BasicCard(
-              title: 'Barba',
-              imagePath: 'images/beard.png',
-              onPressed: () {},
-            ),
-            BasicCard(
-              title: 'Cabelo + Barba',
-              imagePath: 'images/hair_beard.png',
-              onPressed: () {},
-            ),
           ],
         ),
       ),

@@ -1,19 +1,23 @@
-import 'package:chronos/_cmn/extensions/build_context/cmn_module.dart';
 import 'package:flutter/material.dart';
+import '../../extensions/build_context/cmn_module.dart';
 
-class LazyDescriptionText extends StatefulWidget {
-  const LazyDescriptionText(
-      {super.key, required this.lines, required this.height, this.text});
+class LazyText extends StatefulWidget {
+  const LazyText({
+    super.key,
+    required this.lines,
+    required this.textStyle,
+    this.text,
+  });
 
   final int lines;
-  final double height;
   final String? text;
+  final TextStyle textStyle;
 
   @override
-  State<LazyDescriptionText> createState() => _LazyDescriptionTextState();
+  State<LazyText> createState() => _LazyTextState();
 }
 
-class _LazyDescriptionTextState extends State<LazyDescriptionText> {
+class _LazyTextState extends State<LazyText> {
   Container line(Color color) => Container(
         height: 19.5,
         margin: const EdgeInsets.all(2),
@@ -35,13 +39,7 @@ class _LazyDescriptionTextState extends State<LazyDescriptionText> {
 
     if (widget.text != null) {
       children.add(Text(widget.text!,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontFamily: 'Roboto',
-            fontSize: 13,
-            fontWeight: FontWeight.normal,
-            color: Colors.black,
-          )));
+          textAlign: TextAlign.center, style: widget.textStyle));
     } else {
       Color color = context.cmn.colors.tertiaryContainer;
 
@@ -50,8 +48,6 @@ class _LazyDescriptionTextState extends State<LazyDescriptionText> {
       }
     }
 
-    return SizedBox(
-        height: widget.height,
-        child: ListView(padding: EdgeInsets.zero, children: children));
+    return ListView(padding: EdgeInsets.zero, children: children);
   }
 }

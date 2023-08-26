@@ -1,5 +1,6 @@
-import 'package:chronos/_cmn/utilities/component_utilities.dart';
-import 'package:chronos/chronos/components/buttons/custom_primary_button.dart';
+import 'package:chronos/_cmn/components/buttons/primary_button.dart';
+import 'package:chronos/chronos/utilities/app_routes.dart';
+import 'package:chronos/chronos/utilities/component_utilities.dart';
 import 'package:flutter/material.dart';
 
 class LandingScreen extends StatefulWidget {
@@ -14,7 +15,7 @@ class _LandingState extends State<LandingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: ComponentUtilities().getPadding,
+        padding: ComponentUtilities().getScreenPadding,
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/neutral/images/landing.png"),
@@ -34,46 +35,30 @@ class _LandingState extends State<LandingScreen> {
                 const SizedBox(
                   width: 10,
                 ),
-                const Text(
+                Text(
                   'The Boys App',
-                  style: TextStyle(
-                    fontFamily: 'ArchivoBlack',
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
+                  style: ComponentUtilities()
+                      .getBoldTitle(context, fontSize: 28, color: Colors.white),
                 ),
               ],
             ),
             const SizedBox(
               height: 320,
             ),
-            const Text(
+            Text(
               'Bem vindo',
-              style: TextStyle(
-                fontFamily: 'ArchivoBlack',
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.white70,
-              ),
+              style: ComponentUtilities()
+                  .getBoldTitle(context, fontSize: 24, color: Colors.white70),
             ),
-            const Text(
+            Text(
               'The Boys',
-              style: TextStyle(
-                fontFamily: 'ArchivoBlack',
-                fontSize: 38,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+              style: ComponentUtilities()
+                  .getBoldTitle(context, fontSize: 38, color: Colors.white),
             ),
-            const Text(
+            Text(
               'Barber Shop',
-              style: TextStyle(
-                fontFamily: 'ArchivoBlack',
-                fontSize: 38,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+              style: ComponentUtilities()
+                  .getBoldTitle(context, fontSize: 38, color: Colors.white),
             ),
             const SizedBox(
               height: 20,
@@ -81,7 +66,8 @@ class _LandingState extends State<LandingScreen> {
             SizedBox(
                 width: double.infinity,
                 child: PrimaryButton(
-                  onPressed: () => null,
+                  onPressed: () => Navigator.pushNamed(
+                      context, AppRoutes.professionalSelectScreen),
                   child: const Text('Agendar'),
                 )),
           ],

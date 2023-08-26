@@ -1,12 +1,12 @@
-import 'package:chronos/_cmn/extensions/build_context/cmn_module.dart';
 import 'package:flutter/material.dart';
+
+import '../../extensions/build_context/cmn_module.dart';
 
 enum Mode { primary, secondary }
 
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton(
       {super.key,
-      // required
       required this.child,
       required this.onPressed,
       this.mode = Mode.primary});

@@ -15,6 +15,32 @@ class ColorUtilities {
     return _instance;
   }
 
+  /// Darken a color by [percent] amount (100 = black)
+  // ........................................................
+  Color darken(Color c, [int percent = 10]) {
+      assert(1 <= percent && percent <= 100);
+      var f = 1 - percent / 100;
+      return Color.fromARGB(
+          c.alpha,
+          (c.red * f).round(),
+          (c.green  * f).round(),
+          (c.blue * f).round()
+      );
+  }
+
+  /// Lighten a color by [percent] amount (100 = white)
+  // ........................................................
+  Color lighten(Color c, [int percent = 10]) {
+      assert(1 <= percent && percent <= 100);
+      var p = percent / 100;
+      return Color.fromARGB(
+          c.alpha,
+          c.red + ((255 - c.red) * p).round(),
+          c.green + ((255 - c.green) * p).round(),
+          c.blue + ((255 - c.blue) * p).round()
+      );
+  }
+
   Color get primaryColor => Theme.of(_instanceContext).primaryColor;
 
   Color get primaryColorDark => Theme.of(_instanceContext).primaryColorDark;
@@ -24,6 +50,8 @@ class ColorUtilities {
   Color get primary => Theme.of(_instanceContext).colorScheme.primary;
 
   Color get onPrimary => Theme.of(_instanceContext).colorScheme.onPrimary;
+
+  Color get onPrimaryContainer => Theme.of(_instanceContext).colorScheme.onPrimaryContainer;
 
   Color get secondary => Theme.of(_instanceContext).colorScheme.secondary;
 

@@ -1,6 +1,9 @@
+import 'package:chronos/_cmn/components/images/lazy_network_image.dart';
+import 'package:chronos/_cmn/components/misc/lazy_text.dart';
 import 'package:chronos/_cmn/extensions/build_context/cmn_module.dart';
 import 'package:chronos/_cmn/patterns/mediator_interface.dart';
 import 'package:chronos/chronos/models/professional.dart';
+import 'package:chronos/chronos/utilities/component_utilities.dart';
 import 'package:flutter/material.dart';
 
 class ProfessionalCard extends StatefulWidget {
@@ -8,7 +11,7 @@ class ProfessionalCard extends StatefulWidget {
       {super.key, required this.professional, required this.mediator});
 
   final Mediator mediator;
-  final Professional professional;
+  final Professional? professional;
 
   @override
   State<StatefulWidget> createState() {
@@ -18,11 +21,10 @@ class ProfessionalCard extends StatefulWidget {
 
 class _ProfessionalCardBuilder extends State<ProfessionalCard>
     implements MediatorItem<Professional> {
-  
   bool _selected = false;
 
   @override
-  Professional get getValue => widget.professional;
+  Professional get getValue => widget.professional!;
 
   @override
   get isSelected => _selected;
@@ -37,17 +39,19 @@ class _ProfessionalCardBuilder extends State<ProfessionalCard>
   }
 
   void onTap() {
-    setState(() {
-      _selected = !_selected;
-    });
-    widget.mediator.notifyOthers(this);
+    if (widget.professional != null) {
+      setState(() {
+        _selected = !_selected;
+      });
+      widget.mediator.notifyOthers(this);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     widget.mediator.register(this);
 
-    final borderRadius = BorderRadius.circular(10);
+    final borderRadius = ComponentUtilities().getBorderRadius;
 
     final professional = widget.professional;
 
@@ -65,18 +69,20 @@ class _ProfessionalCardBuilder extends State<ProfessionalCard>
               borderRadius: borderRadius,
               child: SizedBox.fromSize(
                 size: Size.fromRadius(_selected ? 60 : 55),
-                child:
-                    Image.network(professional.profileImage, fit: BoxFit.cover),
+                child: LazyNetworkImage(
+                    source: professional?.profileImage, fit: BoxFit.cover),
               ),
             ),
           ),
-          Text(
-            professional.nickname,
-            style: const TextStyle(
-              fontFamily: 'ArchivoBlack',
-              fontSize: 13,
-              fontWeight: FontWeight.normal,
-              color: Colors.black,
+          ComponentUtilities().getVerticalMargin,
+          SizedBox(
+            width: 120,
+            height: 24,
+            child: LazyText(
+              lines: 1,
+              textStyle:
+                  ComponentUtilities().getNormalTitle(context, fontSize: 13),
+              text: professional?.nickname,
             ),
           ),
         ]));

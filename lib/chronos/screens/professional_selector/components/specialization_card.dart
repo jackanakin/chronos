@@ -1,3 +1,5 @@
+import 'package:chronos/_cmn/components/misc/lazy_text.dart';
+import 'package:chronos/_cmn/extensions/build_context/cmn_module.dart';
 import 'package:chronos/chronos/models/professional.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +9,7 @@ class SpecializationCard extends StatelessWidget {
     required this.specialization,
   });
 
-  final ProfessionalSpecialization specialization;
+  final ProfessionalSpecialization? specialization;
 
   @override
   Widget build(BuildContext context) {
@@ -22,23 +24,35 @@ class SpecializationCardBuilder {
 
   final SpecializationCard widget;
 
+  get textStyle => TextStyle(
+        fontFamily: 'ArchivoBlack',
+        fontSize: 12,
+        fontWeight: FontWeight.bold,
+        color: context.cmn.colors.onPrimaryContainer,
+      );
+
   Widget build() {
     return Column(
       children: [
         CircleAvatar(
           radius: 36,
-          backgroundImage: NetworkImage(widget.specialization.image),
+          backgroundImage: widget.specialization != null
+              ? NetworkImage(widget.specialization!.image)
+              : null,
+          backgroundColor: context.cmn.colors.tertiaryContainer,
         ),
         const SizedBox(
           height: 5,
         ),
-        Text(widget.specialization.name,
-            style: const TextStyle(
-              fontFamily: 'ArchivoBlack',
-              fontSize: 12,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            )),
+        SizedBox(
+          width: 90,
+          height: 25,
+          child: LazyText(
+            lines: 1,
+            textStyle: textStyle,
+            text: widget.specialization?.name,
+          ),
+        )
       ],
     );
   }

@@ -1,14 +1,15 @@
+import 'package:flutter/material.dart';
+
+import 'package:chronos/_cmn/components/buttons/primary_button.dart';
 import 'package:chronos/_cmn/components/lists/horizontal_list_view.dart';
-import 'package:chronos/_cmn/components/misc/lazy_description_text.dart';
+import 'package:chronos/_cmn/components/misc/lazy_text.dart';
 import 'package:chronos/_cmn/extensions/build_context/cmn_module.dart';
 import 'package:chronos/_cmn/patterns/mediator_interface.dart';
-import 'package:chronos/_cmn/utilities/component_utilities.dart';
+import 'package:chronos/chronos/utilities/component_utilities.dart';
 import 'package:chronos/chronos/_dummy_data/professionals.dart';
-import 'package:chronos/chronos/components/buttons/custom_primary_button.dart';
 import 'package:chronos/chronos/models/professional.dart';
 import 'package:chronos/chronos/screens/professional_selector/components/professional_card.dart';
 import 'package:chronos/chronos/screens/professional_selector/components/specialization_card.dart';
-import 'package:flutter/material.dart';
 
 class ProfessionalSelectorScreen extends StatefulWidget {
   const ProfessionalSelectorScreen({super.key});
@@ -22,6 +23,8 @@ class _ProfessionalSelectorScreenState extends State<ProfessionalSelectorScreen>
     implements MediatorInterface<Professional> {
   late final Mediator<Professional> _professionalsCardMediator = Mediator(this);
   Professional? _selected;
+
+  final List<Professional> professionalList = professionals;
 
   @override
   void onNotify(MediatorItem<Professional> sender) {
@@ -37,45 +40,34 @@ class _ProfessionalSelectorScreenState extends State<ProfessionalSelectorScreen>
     return Scaffold(
       backgroundColor: colorScheme.background,
       body: Container(
-        padding: ComponentUtilities().getPadding,
+        padding: ComponentUtilities().getScreenPadding,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             const SizedBox(
               height: 20,
             ),
-            const Text(
+            Text(
               'The Boys Barbearia',
-              style: TextStyle(
-                fontFamily: 'ArchivoBlack',
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
+              style: ComponentUtilities().getBoldTitle(context, fontSize: 30),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   'Nº 2023, Lajeado - Rio Grande do Sul',
-                  style: TextStyle(
-                    fontFamily: 'Roboto-Medium',
-                    fontSize: 15,
-                    fontWeight: FontWeight.normal,
-                    color: Colors.black45,
-                  ),
+                  style: ComponentUtilities().getNormalSubtitle(context),
                 ),
                 CircleAvatar(
                   backgroundColor: context.cmn.colors.tertiaryContainer,
-                  radius: 20,
-                  child: const Icon(Icons.map_outlined,
-                      color: Colors.black, size: 20),
+                  radius: ComponentUtilities().getIconSize,
+                  child: Icon(Icons.map_outlined,
+                      color: Colors.black,
+                      size: ComponentUtilities().getIconSize),
                 ),
               ],
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            ComponentUtilities().getVerticalMargin,
             Container(
               decoration: const BoxDecoration(
                 border: Border(
@@ -83,80 +75,65 @@ class _ProfessionalSelectorScreenState extends State<ProfessionalSelectorScreen>
                 ),
               ),
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            const Text(
+            ComponentUtilities().getVerticalMargin,
+            Text(
               'Profissionais',
-              style: TextStyle(
-                fontFamily: 'ArchivoBlack',
-                fontSize: 20,
-                fontWeight: FontWeight.normal,
-                color: Colors.black,
-              ),
+              style: ComponentUtilities().getNormalTitle(context),
             ),
             HorizontalListView(
-              height: 150,
-              itemCount: professionals.length,
+              height: 160,
+              itemCount:
+                  professionalList.isNotEmpty ? professionalList.length : 2,
               itemBuilder: (context, index) => Container(
-                key: ValueKey(professionals[index].getId),
+                key: ValueKey(professionalList.isNotEmpty
+                    ? professionalList[index].getId
+                    : null),
                 child: ProfessionalCard(
-                  professional: professionals[index],
+                  professional: professionalList.isNotEmpty
+                      ? professionalList[index]
+                      : null,
                   mediator: _professionalsCardMediator,
                 ),
               ),
             ),
-            Container(
-              // alignment: Alignment.center,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(_selected?.fullname ?? 'Selecione um profissional',
-                      style: const TextStyle(
-                        fontFamily: 'ArchivoBlack',
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      )),
-                  LazyDescriptionText(
+            ComponentUtilities().getVerticalMargin,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(_selected?.fullname ?? 'Selecione um profissional',
+                    style: ComponentUtilities()
+                        .getBoldTitle(context, fontSize: 22)),
+                SizedBox(
+                  height: 116,
+                  child: LazyText(
                     lines: 5,
-                    height: 115,
                     text: _selected?.description,
+                    textStyle:
+                        ComponentUtilities().getNormalDescritpion(context),
                   ),
-                  SizedBox(
-                    height: 10,
+                ),
+                ComponentUtilities().getVerticalMargin,
+                Text('Especialidades',
+                    style: ComponentUtilities()
+                        .getBoldTitle(context, fontSize: 16)),
+                ComponentUtilities().getVerticalMargin,
+                HorizontalListView(
+                  height: 120,
+                  itemCount: _selected?.specializtions.length ?? 2,
+                  itemBuilder: (context, index) => Container(
+                    key: ValueKey(_selected?.specializtions[index].getId),
+                    child: SpecializationCard(
+                      specialization: _selected?.specializtions[index],
+                    ),
                   ),
-                  Text('Specialidades',
-                      style: const TextStyle(
-                        fontFamily: 'ArchivoBlack',
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      )),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  _selected != null
-                      ? HorizontalListView(
-                          height: 120,
-                          itemCount: _selected!.specializtions.length,
-                          itemBuilder: (context, index) => Container(
-                            key: ValueKey(
-                                _selected!.specializtions[index].getId),
-                            child: SpecializationCard(
-                              specialization: _selected!.specializtions[index],
-                            ),
-                          ),
-                        )
-                      : Container(),
-                  SizedBox(
-                      width: double.infinity,
-                      child: PrimaryButton(
-                        onPressed: () => null,
-                        child: const Text('Agendar'),
-                      )),
-                ],
-              ),
+                ),
+                SizedBox(
+                    width: double.infinity,
+                    child: PrimaryButton(
+                      onPressed: () => null,
+                      child: const Text('Agendar'),
+                    )),
+              ],
             ),
           ],
         ),

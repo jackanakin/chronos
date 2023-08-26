@@ -1,7 +1,10 @@
-import 'package:chronos/_cmn/themes/default.dart';
-import 'package:chronos/_cmn/utilities/platform_utilities.dart';
-import 'package:chronos/chronos/screens/professional_selector/professional_selector.dart';
 import 'package:flutter/material.dart';
+
+import 'package:chronos/_cmn/themes/default.dart';
+import 'package:chronos/chronos/screens/landing/landing.dart';
+import 'package:chronos/chronos/screens/professional_selector/professional_selector.dart';
+
+import 'chronos/utilities/app_routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,17 +13,16 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    PlatformUtilities().setThemeMode = ThemeMode.light;
-
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'The Boys Barbearia',
       theme: lightTheme,
-      darkTheme: darkTheme,
-      themeMode: PlatformUtilities().getThemeMode,
-      home: const ProfessionalSelectorScreen(),
+      routes: {
+        AppRoutes.homeScreen: (ctx) => const LandingScreen(),
+        AppRoutes.professionalSelectScreen: (ctx) =>
+            const ProfessionalSelectorScreen(),
+      },
     );
   }
 }
