@@ -1,3 +1,4 @@
+import 'package:chronos/_cmn/utilities/platform_utilities.dart';
 import 'package:flutter/material.dart';
 
 import 'package:chronos/_cmn/components/buttons/primary_button.dart';
@@ -31,6 +32,17 @@ class _ProfessionalSelectorScreenState extends State<ProfessionalSelectorScreen>
     setState(() {
       _selected = sender.isSelected ? sender.getValue : null;
     });
+  }
+
+  void onPressed() {
+    if (_selected == null) {
+      PlatformUtilities().showMessage(context, Text("ol´aaa"));
+    }
+    
+    else
+    {
+
+    }
   }
 
   @override
@@ -130,7 +142,7 @@ class _ProfessionalSelectorScreenState extends State<ProfessionalSelectorScreen>
                 SizedBox(
                     width: double.infinity,
                     child: PrimaryButton(
-                      onPressed: () => null,
+                      onPressed: onPressed,
                       child: const Text('Agendar'),
                     )),
               ],

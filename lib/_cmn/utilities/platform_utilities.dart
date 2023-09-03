@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class PlatformUtilities {
@@ -22,4 +23,36 @@ class PlatformUtilities {
 
   // Your methods and properties here.
   bool get isIos => Platform.isIOS;
+
+  void showMessage(BuildContext context, Widget content) {
+    if (PlatformUtilities().isIos) {
+      showCupertinoModalPopup<void>(
+        context: context,
+        builder: (BuildContext context) => CupertinoAlertDialog(
+          content: content,
+          actions: <CupertinoDialogAction>[
+            CupertinoDialogAction(
+              isDestructiveAction: false,
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              textStyle: const TextStyle(color: Colors.blue),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: content,
+        duration: const Duration(seconds: 3),
+        showCloseIcon: true,
+        padding: const EdgeInsets.symmetric(
+          horizontal: 4.0,
+        ),
+        behavior: SnackBarBehavior.floating,
+        margin: const EdgeInsets.only(bottom: 100, left: 50, right: 50),
+      ));
+    }
+  }
 }
