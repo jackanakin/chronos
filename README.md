@@ -1,21 +1,10 @@
-# chronos
+## The Boys Barber App
 
-A new Flutter project.
+<img src="https://raw.githubusercontent.com/jackanakin/chronos/main/result/landing.png" 
+  data-canonical-src="https://raw.githubusercontent.com/jackanakin/chronos/main/result/landing.png" width="250" height="400" />
+  
+<img src="https://github.com/jackanakin/chronos/blob/main/result/home.png" 
+  data-canonical-src="https://github.com/jackanakin/chronos/blob/main/result/home.png" width="250" height="400" />
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-
-Customize template:
-
-flutter_tools/templates/app/
-flutter_tools/templates/app/template_manifest.json
+<img src="https://github.com/jackanakin/chronos/blob/main/result/home_selected.png" 
+  data-canonical-src="https://github.com/jackanakin/chronos/blob/main/result/home_selected.png" width="250" height="400" />
